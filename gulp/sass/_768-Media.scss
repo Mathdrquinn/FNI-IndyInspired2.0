@@ -1,0 +1,21 @@
+@media only screen and (max-width: 768px) {
+
+  html body {
+    #glasses-container.swiper-container-v {
+
+    }
+    #glasses-container.swiper-container-h {
+      z-index: 2;
+      height:0px;
+      overflow: visible;
+      bottom: 270px;
+      .swiper-wrapper {
+        height:250px;
+      }
+    }
+    /* Specify Swiper's Size: */
+    #glasses-container, .swiper-slide {
+      height:250px;
+    }
+  }
+}

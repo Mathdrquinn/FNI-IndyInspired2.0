@@ -1,0 +1,33 @@
+@media only screen and (max-width: 641px) {
+ html body {
+   background: none;
+   background-color: $orange;
+   .main-content-container {
+     margin:0 50px;
+     overflow:hidden;
+   }
+   .row #map-canvas {
+     height: 350px;
+   }
+   #glasses-container.swiper-container-h {
+     z-index: 2;
+     height:0px;
+     overflow: visible;
+     bottom: 245px;
+     .swiper-wrapper {
+       height:225px;
+     }
+   }
+   /* Specify Swiper's Size: */
+   #glasses-container, .swiper-slide {
+     height:225px;
+   }
+   #intro-text {
+     padding: 0 20px;
+     article {
+       padding: 0;
+     }
+   }
+
+ } // End Body
+} // End Media
