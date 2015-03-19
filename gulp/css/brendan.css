@@ -4106,15 +4106,19 @@ html body .container {
   box-shadow: 0 5px 14px #ccc;
   margin: 0 auto;
 }
+html body #intro-text {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
 html body #intro-text article {
   margin: 60px 0 30px;
-  padding: 0px 50px 30px;
+  padding: 0px 50px;
   text-align: center;
   border-bottom: rgba(0, 0, 0, 0.05);
 }
 html body .main-content-container {
   margin: 0 75px;
-  overflow: hidden;
+  overflow: visible;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -4127,13 +4131,19 @@ html body .row .fixed-map {
 }
 html body .row #map-canvas {
   display: inline-block;
-  height: 500px;
+  height: 525px;
   margin: 0;
   padding: 0;
 }
+html body .row #map-canvas h1 {
+  font-size: 24px;
+}
+html body .row #map-canvas .bodyContent p {
+  font-size: 14px;
+}
 html body .row #info {
   padding: 20px 10px;
-  height: 500px;
+  height: 525px;
   display: inline-block;
   position: relative;
   background-color: #fff;
@@ -4142,53 +4152,60 @@ html body .row #info {
 html body .row #info p {
   margin: 50px 20px auto 20px;
 }
-html body #glasses-container.swiper-container-h {
+html body .glasses-container.swiper-container-h {
   z-index: -1;
   height: 0px;
   overflow: hidden;
   bottom: 320px;
 }
-html body #glasses-container.swiper-container-h .swiper-wrapper {
+html body .glasses-container.swiper-container-h .swiper-wrapper {
   height: 244px;
 }
-html body #glasses-container {
+html body .glasses-container {
   background-color: #fff;
   text-align: center;
-  max-height: 500px;
+  max-height: 525px;
   overflow-y: scroll;
   -ms-overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-x: hidden;
 }
-html body #glasses-container .swiper-wrapper {
+html body .glasses-container .swiper-wrapper {
   background-color: #fff;
 }
-html body #glasses-container .pair-container {
+html body .glasses-container .pair-container {
   background-color: #fff;
-}
-html body #glasses-container .pair-container h3 {
-  margin: 25px auto 0px auto;
-}
-html body #glasses-container .pair-container .pair-img-container {
-  margin: 0 20px;
-  padding: 25px 0px;
   border-bottom: 1px dashed #A2A49F;
+  -webkit-transition: 0.5s;
+          transition: 0.5s;
 }
-html body #glasses-container .pair-container img {
+html body .glasses-container .pair-container h3 {
+  margin: 0px auto;
+}
+html body .glasses-container .pair-container .pair-img-container {
+  margin: 0 20px;
+  padding: 5px 0px;
+}
+html body .glasses-container .pair-container img {
   width: 70%;
   padding: 20px auto;
 }
-html body #glasses-container .pair-container .pair-text {
-  position: absolute;
-  right: -100%;
-  top: 60px;
-  background-color: #FD7C08;
-  height: 190px;
-  padding: 15px 30% 15px 15%;
-  -webkit-transition: right 0.75s ease;
-          transition: right 0.75s ease;
+html body .glasses-container .pair-container .pair-text {
+  position: relative;
+  height: 0px;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+          transition: 0.5s;
 }
-html body #glasses-container .pair-container .pair-text .arrow-left {
+html body .glasses-container .pair-container .pair-text .hide-btn {
+  color: #008CBA;
+  cursor: hand;
+  cursor: pointer;
+}
+html body .glasses-container .pair-container .pair-text .hide-btn:hover {
+  color: #00759b;
+}
+html body .glasses-container .pair-container .pair-text .arrow-left {
   position: absolute;
   top: 35%;
   width: 45px;
@@ -4199,20 +4216,82 @@ html body #glasses-container .pair-container .pair-text .arrow-left {
   background-color: #0f5474;
   z-index: 999999999;
 }
-html body #glasses-container .pair-container .pair-text .arrow-left img {
+html body .glasses-container .pair-container .pair-text .arrow-left img {
   height: 30px;
 }
-html body #glasses-container .pair-container .pair-text .arrow-left {
+html body .glasses-container .pair-container .pair-text .arrow-left {
   left: -40px;
 }
-html body #glasses-container .pair-container .pair-text .arrow-left img {
+html body .glasses-container .pair-container .pair-text .arrow-left img {
   float: left;
 }
-html body #glasses-container .pair-container .move-in {
+html body .glasses-container .pair-container .move-in {
   right: -15%;
 }
-html body #glasses-container .pair-container:last-child {
-  padding-bottom: 220px;
+html body #glasses-container-v .pair-container.highlighted {
+  height: 525px !important;
+}
+html body #glasses-container-v .pair-container.highlighted h3 {
+  border-bottom: 5px solid #FD7C08;
+}
+html body #glasses-container-v .pair-container.highlighted .pair-text {
+  height: auto;
+}
+html body .pagination {
+  position: absolute;
+  z-index: 3;
+}
+html body .pagination .swiper-pagination-bullet {
+  display: block;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  -webkit-transition: 0.3s;
+          transition: 0.3s;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+html body .pagination-v {
+  top: 0;
+  right: -10px;
+  height: 525px;
+  max-width: 15px;
+}
+html body .pagination-v .swiper-pagination-bullet {
+  display: block;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 3px;
+  -webkit-transition: 0.3s;
+          transition: 0.3s;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+html body .pagination-v .swiper-pagination-bullet-active {
+  margin-bottom: 380px;
+}
+html body .pagination-h {
+  visibility: hidden;
+  bottom: 5px;
+  left: 0px;
+  max-height: 15px;
+  width: 50%;
+  margin-left: 25%;
+}
+html body .pagination-h .swiper-pagination-bullet {
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  margin-right: 3px;
+  -webkit-transition: 0.3s;
+          transition: 0.3s;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+html body .pagination-h .swiper-pagination-bullet-active {
+  margin-right: 67.3%;
 }
 html body footer {
   margin-top: 30px;
@@ -4234,33 +4313,40 @@ html body footer {
     /* Specify Swiper's Size: */
   }
   html body .main-content-container {
-    border-bottom: 1px dashed #A2A49F;
+    overflow: hidden;
   }
   html body .row #map-canvas {
     height: 350px;
   }
-  html body #glasses-container.swiper-container-v {
+  html body .glasses-container.swiper-container-v {
     visibility: hidden;
     margin-bottom: 20px;
   }
-  html body #glasses-container.swiper-container-h {
+  html body .glasses-container.swiper-container-h {
     z-index: 2;
     height: 0px;
     overflow: visible;
+    bottom: 260px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper {
-    height: 340px;
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 260px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper .pair-container .pair-img-container {
+  html body .glasses-container.swiper-container-h .swiper-wrapper .pair-container .pair-img-container {
     border-bottom: none;
   }
-  html body #glasses-container, html body .swiper-slide {
+  html body .glasses-container, html body .swiper-slide {
     width: 100%;
-    height: 320px;
-    max-height: 320px;
+    height: 260px;
+    max-height: 260px;
     overflow: hidden;
     margin: 0px !important;
     padding: 0px !important;
+  }
+  html body .pagination-v {
+    visibility: hidden;
+  }
+  html body .pagination-h {
+    visibility: visible;
   }
   html body #intro-text {
     padding: 0 30px;
@@ -4273,23 +4359,23 @@ html body footer {
   html body {
     /* Specify Swiper's Size: */
   }
-  html body #glasses-container.swiper-container-v {
+  html body .glasses-container.swiper-container-v {
     visibility: hidden;
     margin-bottom: 20px !important;
   }
-  html body #glasses-container.swiper-container-h {
+  html body .glasses-container.swiper-container-h {
     z-index: 2;
     height: 0px;
     overflow: visible;
-    bottom: 310px;
+    bottom: 220px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper {
-    height: 290px;
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 220px;
   }
-  html body #glasses-container, html body .swiper-slide {
+  html body .glasses-container, html body .swiper-slide {
     width: 100%;
-    height: 290px;
-    max-height: 320px;
+    height: 220px;
+    max-height: 220px;
     overflow: hidden;
   }
 }
@@ -4297,17 +4383,63 @@ html body footer {
   html body {
     /* Specify Swiper's Size: */
   }
-  html body #glasses-container.swiper-container-h {
+  html body .glasses-container.swiper-container-h {
     z-index: 2;
     height: 0px;
     overflow: visible;
-    bottom: 270px;
+    bottom: 195px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper {
-    height: 250px;
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 195px;
   }
-  html body #glasses-container, html body .swiper-slide {
-    height: 250px;
+  html body .glasses-container, html body .swiper-slide {
+    height: 195px;
+  }
+  html body .pagination-h {
+    visibility: visible;
+    bottom: 5px;
+    left: 0px;
+    max-height: 15px;
+    width: 80%;
+    margin-left: 10%;
+  }
+  html body .pagination-h .swiper-pagination-bullet {
+    display: inline-block;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    -webkit-transition: 0.3s;
+            transition: 0.3s;
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+  }
+  html body .pagination-h .swiper-pagination-bullet-active {
+    margin-right: 68%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  html body .pagination-h {
+    visibility: visible;
+    bottom: 5px;
+    left: 0px;
+    max-height: 15px;
+    width: 76%;
+    margin-left: 14%;
+  }
+  html body .pagination-h .swiper-pagination-bullet {
+    display: inline-block;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    -webkit-transition: 0.3s;
+            transition: 0.3s;
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+  }
+  html body .pagination-h .swiper-pagination-bullet-active {
+    margin-right: 60%;
   }
 }
 @media only screen and (max-width: 641px) {
@@ -4323,17 +4455,17 @@ html body footer {
   html body .row #map-canvas {
     height: 350px;
   }
-  html body #glasses-container.swiper-container-h {
+  html body .glasses-container.swiper-container-h {
     z-index: 2;
     height: 0px;
     overflow: visible;
-    bottom: 245px;
+    bottom: 185px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper {
-    height: 225px;
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 185px;
   }
-  html body #glasses-container, html body .swiper-slide {
-    height: 225px;
+  html body .glasses-container, html body .swiper-slide {
+    height: 185px;
   }
   html body #intro-text {
     padding: 0 20px;
@@ -4350,17 +4482,24 @@ html body footer {
     margin: 0 50px;
     overflow: hidden;
   }
-  html body #glasses-container.swiper-container-h {
+  html body .glasses-container.swiper-container-h {
     z-index: 2;
     height: 0px;
     overflow: visible;
-    bottom: 235px;
+    bottom: 175px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper {
-    height: 215px;
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 175px;
   }
-  html body #glasses-container, html body .swiper-slide {
-    height: 215px;
+  html body .glasses-container, html body .swiper-slide {
+    height: 175px;
+  }
+  html body .pagination-h {
+    width: 95%;
+    margin-left: 5%;
+  }
+  html body .pagination-h .swiper-pagination-bullet-active {
+    margin-right: 60%;
   }
 }
 @media only screen and (max-width: 480px) {
@@ -4371,26 +4510,58 @@ html body footer {
     margin: 0 45px 0px 0px;
     overflow: hidden;
   }
-  html body #glasses-container.swiper-container-h {
+  html body .glasses-container.swiper-container-h {
     z-index: 2;
     height: 0px;
     overflow: visible;
-    bottom: 215px;
+    bottom: 165px;
   }
-  html body #glasses-container.swiper-container-h .swiper-wrapper {
-    height: 195px;
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 165px;
   }
-  html body #glasses-container, html body .swiper-slide {
-    height: 195px;
+  html body .glasses-container, html body .swiper-slide {
+    height: 165px;
   }
 }
 @media only screen and (max-width: 414px) {
   html body {
     background: none;
     background-color: orange;
+    /* Specify Swiper's Size: */
   }
   html body .main-content-container {
     margin: 0 45px 0px 0px;
     overflow: hidden;
+  }
+  html body .glasses-container.swiper-container-v {
+    visibility: hidden;
+    margin-bottom: 20px !important;
+  }
+  html body .glasses-container.swiper-container-h {
+    z-index: 2;
+    height: 0px;
+    overflow: visible;
+    bottom: 120px;
+  }
+  html body .glasses-container.swiper-container-h .swiper-wrapper {
+    height: 120px;
+  }
+  html body .glasses-container, html body .swiper-slide {
+    width: 100%;
+    height: 120px;
+    max-height: 140px;
+    overflow: hidden;
+  }
+  html body .pagination-h {
+    width: 95%;
+    margin-left: 5%;
+  }
+  html body .pagination-h .swiper-pagination-bullet-active {
+    margin-right: 50%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  html body .pagination-h .swiper-pagination-bullet-active {
+    margin-right: 45%;
   }
 }

@@ -1,13 +1,17 @@
 console.log('structures');
 
-window.Spot = function (name, title, next, map, center, zoom, coords, type, color, highlightColor, icon){
+window.Spot = function (name, pairName, title, next, map, center, zoom, coords, type, color, highlightColor, icon, imageUrl){
     this.name = name; // String: 'broadRipple'
+    this.pairName = pairName;
     this.title = title;
     this.getTitle = function() {
         return this.title;
     };
     this.getName = function() {
         return this.name;
+    };
+    this.getPairName = function() {
+        return this.pairName;
     };
     this.el = function() {
     return $('.' + this.name);
@@ -16,10 +20,46 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
         // Populates Spot onto map
         this.constructGooglePoly();
         this.setMarker();
+        this.appendBothSwiperSlides();
+        this.initNext();
     };
     this.next = next; // Spot obj or null
     this.initNext = function() {
-        this.next.init();
+        if(this.next) {
+            this.next.init();
+        }
+        else{return -1}
+    };
+    this.pairDescription = 'This is all about the pair of glasses you see above.  Aren\'t they beautiful?';
+    this.getPairDescription = function(){
+        return this.pairDescription
+    };
+    this.areaDescription = 'This is al about the area.  Hopefully this is completely full of good stuff.';
+    this.getAreaDescription = function() {
+        return this.areaDescription
+    };
+    this.toDoDescription = ['thing one is here.', 'thing two is here.', 'This is the last item.'];
+    this.getToDoDescription = function () {
+        var arr = this.toDoDescription;
+        var html = [];
+        for (var i = 0; i < arr.length; i++) {
+            html.push('<li class=\'todo-item\'>' + arr[i] + '</li>');
+        }
+        return html.join('');
+    };
+    this.about = [
+        '<div class="about">',
+        '<p>' + this.getPairDescription() + '</p>',
+        '<h4>About The Area</h4>',
+        '<p>' + this.getAreaDescription() + '</p>',
+        '<h4>Things To Do</h4>',
+        '<ul>' + this.getToDoDescription() + '</ul>',
+        //'<a class=\right\' href=\'\'>hide</a>',
+        '<span class=\'hide-btn right\'>hide</span>',
+        '</div>'
+    ].join('');
+    this.getAbout = function () {
+        return this.about;
     };
     this.map = map; // GoogleMap
     this.center = center; // Obj: {lat: 39.76841991769641, lng: -86.15808963775635};
@@ -58,6 +98,10 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
     this.getPoly = function() {
         return this.poly;
     };
+    this.finalPoly = 'blah';
+    this.getFinalPoly = function() {
+        return this.finalPoly;
+    };
     this.getGooglePoly = function() {
         if(this.getType() === 'line') {
             return this.generatePolyline();
@@ -74,29 +118,32 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
             color = this.getColor();
         polyline.path = this.getCoords();
         polyline.strokeColor = color.strokeColor;
-        var finalPolyline = new google.maps.Polyline(polyline);
-        return finalPolyline;
+        polyline.strokeOpacity = 1;
+        polyline.strokeWeight = 1;
+        this.poly = polyline;
+        this.finalPoly = new google.maps.Polyline(polyline);
+        return this.getFinalPoly();
     };
     this.generatePolygon = function() {
         var polygon = this.getPoly();
             color = this.getColor();
-        console.log(polygon);
+        //console.log(polygon);
         polygon.path = this.getCoords();
         polygon.strokeColor = color.strokeColor;
         polygon.fillColor = color.fillColor;
         polygon.fillOpacity = 0.35;
-        console.log(polygon)
-        var finalPoly = new google.maps.Polygon(polygon);
-        console.log(finalPoly);
-        return finalPoly;
+        polygon.strokeOpacity = 1;
+        polygon.strokeWeight = 1;
+        this.poly = polygon;
+        this.finalPoly = new google.maps.Polygon(polygon);
+        return this.getFinalPoly();
     };
     this.constructGooglePoly = function() {
-        console.log(this.map);
         this.getGooglePoly().setMap(this.map);
         return 1;
     };
     this.clearGooglePoly = function () {
-        this.getGooglePoly().setMap(null);
+        this.getFinalPoly().setMap(null);
         return 1;
     };
     this.highlightColor = highlightColor; // Obj: {strokeColor: '#92D300', fillColor: '#92D300'}
@@ -121,8 +168,9 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
         polyline.strokeColor = color.strokeColor;
         polyline.strokeOpacity = 0.5;
         polyline.strokeWeight = 10;
-        var finalPolyline = new google.maps.Polyline(polyline);
-        return finalPolyline;
+        this.poly = polyline;
+        this.finalPoly = new google.maps.Polyline(polyline);
+        return this.getFinalPoly();
     };
     this.generateHighlightPolygon = function() {
         var polygon = this.getPoly();
@@ -133,15 +181,17 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
         polygon.fillOpacity = 0.35;
         polygon.strokeOpacity = 0.5;
         polygon.strokeWeight = 10;
-        var finalPoly = new google.maps.Polygon(polygon);
-        return finalPoly;
+        this.poly = polygon;
+        this.finalPoly = new google.maps.Polygon(polygon);
+        return this.getFinalPoly();
     };
     this.constructHighlightGooglePoly = function() {
+        this.clearGooglePoly();
         this.getHighlightGooglePoly().setMap(this.map);
         return 1;
     };
     this.clearHighlightGooglePoly = function () {
-        this.getHighlightGooglePoly().setMap(null);
+        this.getFinalPoly().setMap(null);
         return 1;
     };
     this.marker = null;
@@ -152,12 +202,6 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
     this.getIcon = function() {
         return this.icon;
     };
-//    constructPoly: function() {
-//    meridianPoly.setMap(map);
-//    if (this.next) {
-//        this.next.constructPoly();
-//    }
-//},
     this.constructMarker = function() {
         var myLatlng = this.getGoogleCenter();
 
@@ -171,136 +215,88 @@ window.Spot = function (name, title, next, map, center, zoom, coords, type, colo
     this.setMarker = function() {
         var ready = this.constructMarker();
         if(ready) {
-            this.getMarker().setMap(map);
+            this.getMarker().setMap(this.map);
             return 1;
         }
         else return -1;
     };
-    //constructMarker: function () {
-    //    var myLatlng = new google.maps.LatLng(this.center.lat,this.center.lng);
-    //
-    //    this.marker = new google.maps.Marker({
-    //        position: myLatlng,
-    //        title: this.getTitle(),
-    //
-    //        icon: 'images/marker.png'
-    //    });
-    //
-    //    this.marker.setMap(map);
-    //
-    //    if (this.next) {
-    //        this.next.constructMarker();
-    //    }
-    //},
-    this.resetMarker = function () {
+    this.clearMarker = function () {
         // Not sure what this will do...yet...
+        brightwood.getMarker().setMap(null);
+        return 1;
+    };
+    this.resetPoly = function () {
+        // Resets the Poly to original
+        this.clearHighlightGooglePoly();
+        this.constructGooglePoly();
     };
     this.unhighlight = function() {
-        // Will reset the coloring of a poly
+        this.clearHighlightGooglePoly()
+        this.constructGooglePoly();
     };
     this.highlight = function () {
-        this.unhighlight();
         this.clearGooglePoly();
         this.constructHighlightGooglePoly();
-        //this.panTo();
+        this.panTo();
     };
-    //highlight: function() {
-    //    this.unhighlight();
-    //    this.clearGooglePoly();
-    //
-    //    this.poly.strokeColor = this.highlightColor;
-    //    this.poly.strokeOpacity = 0.5;
-    //    this.poly.strokeWeight = 10;
-    //    meridianPoly = new google.maps.Polyline(this.poly);
-    //    meridianPoly.setMap(map);
-    //
-    //    this.panTo();
-    //},
-    //reset: function() {
-    //    meridianPoly.setMap(null);
-    //    if (this.marker) {this.resetMarker();};
-    //
-    //    this.poly.strokeColor = '#92D300';
-    //    this.poly.strokeOpacity = 1;
-    //    this.poly.strokeWeight = 2;
-    //    meridianPoly = new google.maps.Polyline(this.poly);
-    //    meridianPoly.setMap(map);
-    //},
-    //setZoom: function () {
-    //    map.setZoom(this.zoom)
-    //},
-    //panTo: function () {
-    //    map.panTo(this.center);
-    //    this.setZoom();
-    //},
-    //moveToSlide: function () {
-    //    console.log('move Slide')
-    //    var index = $('.swiper-slide').index(this.el()) - 1;
-    //    mySwiper.slideTo(index, 500);
-    //}
+    this.panTo = function() {
+        this.map.panTo(this.getCenter());
+        this.setZoom();
+    };
+    this.panToAndHighlight = function() {
+        this.map.panTo(this.getCenter());
+        this.setZoom();
+        this.highlight();
+    };
+    this.setZoom = function() {
+        this.map.setZoom(this.zoom)
+    };
+    this.contentString = [
+        '<div class=\'content\'>',
+            '<div class=\'siteNotice\'></div>',
+            '<h1 class=\'firstHeading\' class=\'firstHeading\'>Broad Ripple</h1>',
+            '<div class=\'bodyContent\'>',
+                '<p style=\'display: inline-block;width:49%;\'>Located in northern Indy, Broad Ripple is home to a fun mix',
+                'of art galleries, restaurants, comedy clubs,  local shopping',
+                'venues, and bars.  It’s a popular destination for those seeking',
+                'some fun on the weekend.</p>',
+                '<img style=\'display: inline-block;width:49%; vertical-align:top\' src=\'http://cdn.visitindy.com/web/2014/4/25/broad-ripple-village-1.jpg\'>',
+            '</div>',
+        '</div>'
+    ].join('');
+    this.getContentString = function() {
+        return this.contentString
+    };
+    this.imageUrl = imageUrl || 'http://cdn.felixandiris.com/tn_-----images--W--BroadRipple-TOR---jpg_w705.jpg';
+    this.getImageUrl = function() {
+        return this.imageUrl;
+    };
+    this.swiperSlide = [
+        '<!-- Begin Pair-->',
+        '<div id="' + this.getName() + '-v" class="' + this.getName() + ' row pair-container swiper-slide" data-name="' + this.getName() + '">',
+            '<div class="pair-img large-12 medium-12 small-12 columns">',
+                '<div class="pair-img-container">',
+                    '<img src="' + this.getImageUrl() + '" alt="' + this.getTitle() + '"/>',
+                '</div>',
+                '<h3><span>' + this.getPairName() + '</span></h3>',
+            '</div>',
+            '<!-- .pair-text-->',
+            '<div class="large-12 medium-12 small-12 columns pair-text">',
+                this.getAbout(),
+            '</div>  <!-- End .pair-text-->',
+        '</div> <!-- End Pair-->'
+    ].join('');
+    this.getSwiperSlide = function() {
+        return this.swiperSlide;
+    };
+    this.appendSwiperSlide_v = function () {
+        $('.swiper-container-v .swiper-wrapper').prepend(this.getSwiperSlide());
+    };
+    this.appendSwiperSlide_h = function () {
+        $('.swiper-container-h .swiper-wrapper').append(this.getSwiperSlide());
+    }
+    this.appendBothSwiperSlides = function() {
+        this.appendSwiperSlide_v();
+        this.appendSwiperSlide_h();
+    }
 };
-
-var collegeCoords = [
-    new google.maps.LatLng(39.91253784835588, -86.1458158493042),
-
-    new google.maps.LatLng(39.9007031172086, -86.14585876464844),
-
-    new google.maps.LatLng(39.88572159734742, -86.1458158493042),
-
-    new google.maps.LatLng(39.88144056165907, -86.14579439163208),
-
-    new google.maps.LatLng(39.877488599164494, -86.14613771438599),
-
-    new google.maps.LatLng(39.87536432521706, -86.14613771438599),
-
-    new google.maps.LatLng(39.87407984858469, -86.14618062973022),
-
-    new google.maps.LatLng(39.872581262110266, -86.14624500274658),
-
-    new google.maps.LatLng(39.863869050598446, -86.14607334136963),
-
-    new google.maps.LatLng(39.85713238576469, -86.14594459533691),
-
-    new google.maps.LatLng(39.84785809547373, -86.1458158493042),
-
-    new google.maps.LatLng(39.842816836594174, -86.1457085609436),
-
-    new google.maps.LatLng(39.84232257560377, -86.1457085609436),
-
-    new google.maps.LatLng(39.8406420616243, -86.14532232284546),
-
-    new google.maps.LatLng(39.840032453250814, -86.14517211914062),
-
-    new google.maps.LatLng(39.839505220023106, -86.14521503448486),
-
-    new google.maps.LatLng(39.82502119962214, -86.14506483078003),
-
-    new google.maps.LatLng(39.80911656829775, -86.1449146270752),
-
-    new google.maps.LatLng(39.80717150073159, -86.14478588104248),
-
-    new google.maps.LatLng(39.785475323257955, -86.14474296569824),
-
-    new google.maps.LatLng(39.78174869538038, -86.14472150802612),
-
-    new google.maps.LatLng(39.780709820662594, -86.14512920379639),
-
-    new google.maps.LatLng(39.77924217726969, -86.14508628845215),
-
-    new google.maps.LatLng(39.77836817251456, -86.1451506614685),
-
-    new google.maps.LatLng(39.77721380960049, -86.14523649215698),
-
-    new google.maps.LatLng(39.775234856701566, -86.14532232284546),
-
-    new google.maps.LatLng(39.770996407821016, -86.14551544189453),
-
-    new google.maps.LatLng(39.75794958308906, -86.14598751068115),
-];
-
-google.maps.event.addDomListener(window, 'click', setBrendan);
-
-function setBrendan() {
-    console.log('im a map')
-    window.brendan = new Spot('brendan', 'Brendan Quinn', null, map, {lat: 39.863869050598446, lng: -86.14607334136963}, 11, collegeCoords, 'line', {strokeColor: '#FF0DFF'}, {strokeColor: '#FF530D'}, 'images/marker.png');
-}

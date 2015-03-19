@@ -9,18 +9,18 @@
    .row #map-canvas {
      height: 350px;
    }
-   #glasses-container.swiper-container-h {
+   .glasses-container.swiper-container-h {
      z-index: 2;
      height:0px;
      overflow: visible;
-     bottom: 245px;
+     bottom: 185px;
      .swiper-wrapper {
-       height:225px;
+       height:185px;
      }
    }
    /* Specify Swiper's Size: */
-   #glasses-container, .swiper-slide {
-     height:225px;
+   .glasses-container, .swiper-slide {
+     height:185px;
    }
    #intro-text {
      padding: 0 20px;

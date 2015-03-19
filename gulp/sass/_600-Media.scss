@@ -4,18 +4,28 @@
       margin:0 50px;
       overflow:hidden;
     }
-    #glasses-container.swiper-container-h {
+    .glasses-container.swiper-container-h {
       z-index: 2;
       height:0px;
       overflow: visible;
-      bottom: 235px;
+      bottom: 175px;
       .swiper-wrapper {
-        height:215px;
+        height:175px;
       }
     }
     /* Specify Swiper's Size: */
-    #glasses-container, .swiper-slide {
-      height:215px;
+    .glasses-container, .swiper-slide {
+      height:175px;
+    }
+    .pagination-h {
+      width: 95%;
+      margin-left:5%;
+      .swiper-pagination-bullet {
+
+      }
+      .swiper-pagination-bullet-active {
+        margin-right:60%;
+      }
     }
   }
 }

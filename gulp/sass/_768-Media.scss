@@ -1,21 +1,65 @@
 @media only screen and (max-width: 768px) {
 
   html body {
-    #glasses-container.swiper-container-v {
+    .glasses-container.swiper-container-v {
 
     }
-    #glasses-container.swiper-container-h {
+    .glasses-container.swiper-container-h {
       z-index: 2;
       height:0px;
       overflow: visible;
-      bottom: 270px;
+      bottom: 195px;
       .swiper-wrapper {
-        height:250px;
+        height:195px;
       }
     }
     /* Specify Swiper's Size: */
-    #glasses-container, .swiper-slide {
-      height:250px;
+    .glasses-container, .swiper-slide {
+      height:195px;
+    }
+    .pagination-h {
+      visibility: visible;
+      bottom: 5px;
+      left: 0px;
+      max-height: 15px;
+      width: 80%;
+      margin-left:10%;
+      .swiper-pagination-bullet {
+        display: inline-block;
+        position: relative;
+        width:10px;
+        height:10px;
+        margin-right:3px;
+        transition: 0.3s;
+        animation-delay: 0.3s;
+      }
+      .swiper-pagination-bullet-active {
+        margin-right:68%;
+      }
+    }
+  }
+}
+@media only screen and (max-width:700px) {
+  html body {
+    .pagination-h {
+      visibility: visible;
+      bottom: 5px;
+      left: 0px;
+      max-height: 15px;
+      width: 76%;
+      margin-left:14%;
+      .swiper-pagination-bullet {
+        display: inline-block;
+        position: relative;
+        width:10px;
+        height:10px;
+        margin-right:3px;
+        transition: 0.3s;
+        animation-delay: 0.3s;
+      }
+      .swiper-pagination-bullet-active {
+        margin-right:60%;
+      }
     }
   }
 }
