@@ -7,3 +7,5 @@ $('#glasses-container-v').on('click', '.about .hide-btn', function() {
 $('.reset').on('click', function() {
     map.panTo({ lat: 39.8120, lng: -86.1480});
 });
+
+$(document).foundation();

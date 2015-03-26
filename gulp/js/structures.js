@@ -59,7 +59,6 @@ window.Spot = function (name, pairName, title, next, map, center, zoom, coords, 
         '<h4>Things To Do</h4>',
         '<ul>' + this.getToDoDescription() + '</ul>',
         //'<a class=\right\' href=\'\'>hide</a>',
-        '<span class=\'hide-btn right\'>hide</span>',
         '</div>'
     ].join('');
     this.getAbout = function () {
@@ -280,17 +279,43 @@ window.Spot = function (name, pairName, title, next, map, center, zoom, coords, 
             '<!-- .pair-text-->',
             '<div class="large-12 medium-12 small-12 columns pair-text">',
                 this.getAbout(),
+               '<span class=\'hide-btn right\'>hide</span>',
             '</div>  <!-- End .pair-text-->',
         '</div> <!-- End Pair-->'
     ].join('');
     this.getSwiperSlide = function() {
         return this.swiperSlide;
     };
+    this.swiperSlide_h = [
+        '<!-- Begin Pair-->',
+        '<div id=\'' + this.getName() + '-v\' class=\'' + this.getName() + ' row pair-container swiper-slide\' data-name=\'' + this.getName() + '\'>',
+            '<a href=\'#\'data-reveal-id=\'' + this.getName() + 'Modal\'>',
+                '<div class=\'pair-img large-12 medium-12 small-12 columns\'>',
+                    '<div class=\'pair-img-container\'>',
+                        '<img src=\'' + this.getImageUrl() + '\' alt=\'' + this.getTitle() + '\'/>',
+                    '</div>',
+                    '<h3><span>' + this.getPairName() + '</span></h3>',
+                '</div>',
+            '</a>',
+        '<!-- .pair-text-->',
+            '<div id=\'' + this.getName() + 'Modal\' class=\'reveal-modal\' data-reveal aria-labelledby=\'modalTitle\' aria-hidden=\'true\' role=\'dialog\'>',
+                '<div class=\'large-12 medium-12 small-12 columns pair-text\'>',
+                        '<h1>' + this.getPairName() + '</h1>',
+                        this.getAbout(),
+                        '<img src=\'' + this.getImageUrl() + '\'/>',
+                    '<a class=\'close-reveal-modal\' aria-label=\'Close\'>×</a>',
+                '</div>  <!-- End .pair-text-->',
+            '</div>',
+        '</div> <!-- End Pair-->'
+    ].join('');
+    this.getSwiperSlide_h = function() {
+        return this.swiperSlide_h;
+    };
     this.appendSwiperSlide_v = function () {
         $('.swiper-container-v .swiper-wrapper').prepend(this.getSwiperSlide());
     };
     this.appendSwiperSlide_h = function () {
-        $('.swiper-container-h .swiper-wrapper').append(this.getSwiperSlide());
+        $('.swiper-container-h .swiper-wrapper').append(this.getSwiperSlide_h());
     }
     this.appendBothSwiperSlides = function() {
         this.appendSwiperSlide_v();
