@@ -1041,7 +1041,7 @@ $(document).ready(function() {
         var strokeColor = '#92D300';
         var highlightColor = '#FD7C08';
         var icon = 'images/marker.png';
-        window.college = new Spot('college','College', 'College Street', null, map, collegeCenter, 12, collegeCoords, 'line', {strokeColor: '#FF0DFF'}, {strokeColor: '#FF530D'}, icon);
+        window.college = new Spot('college','College', 'College Street', null, map, collegeCenter, 12, collegeCoords, 'line', {strokeColor: strokeColor}, {strokeColor: highlightColor}, icon);
         window.broadRipple = new Spot('broadRipple', 'Broad Ripple', 'Broad Ripple', college, map, broadRippleCenter, 15, broadRippleCoords, 'line', {strokeColor: strokeColor}, {strokeColor: highlightColor}, icon, null);
         window.fountainSquare = new Spot('fountainSquare', 'Fountain Square', 'Fountain Square', broadRipple, map, fountainSquareCenter, 15, fountainSquareCoords, 'ngon', {strokeColor: strokeColor, fillColor: strokeColor}, {strokeColor: highlightColor, fillColor:highlightColor}, icon, 'http://cdn.felixandiris.com/tn_-----images--W--FountainSquare-BLK---jpg_w705.jpg');
         window.holiday = new Spot('holiday', 'Holiday', 'Holiday Park', fountainSquare, map, holidayCenter, 15, holidayCoords, 'ngon', {strokeColor: strokeColor, fillColor: strokeColor}, {strokeColor: highlightColor, fillColor:highlightColor}, icon, null);

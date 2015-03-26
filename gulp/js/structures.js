@@ -47,6 +47,10 @@ window.Spot = function (name, pairName, title, next, map, center, zoom, coords, 
         }
         return html.join('');
     };
+    this.imageUrl = imageUrl || 'http://cdn.felixandiris.com/tn_-----images--W--BroadRipple-TOR---jpg_w705.jpg';
+    this.getImageUrl = function() {
+        return this.imageUrl;
+    };
     this.about = [
         '<div class="about">',
         '<p>' + this.getPairDescription() + '</p>',
@@ -254,22 +258,15 @@ window.Spot = function (name, pairName, title, next, map, center, zoom, coords, 
     this.contentString = [
         '<div class=\'content\'>',
             '<div class=\'siteNotice\'></div>',
-            '<h1 class=\'firstHeading\' class=\'firstHeading\'>Broad Ripple</h1>',
+            '<h1 class=\'firstHeading\' class=\'firstHeading\'>'+ this.getTitle() + '</h1>',
             '<div class=\'bodyContent\'>',
-                '<p style=\'display: inline-block;width:49%;\'>Located in northern Indy, Broad Ripple is home to a fun mix',
-                'of art galleries, restaurants, comedy clubs,  local shopping',
-                'venues, and bars.  It’s a popular destination for those seeking',
-                'some fun on the weekend.</p>',
-                '<img style=\'display: inline-block;width:49%; vertical-align:top\' src=\'http://cdn.visitindy.com/web/2014/4/25/broad-ripple-village-1.jpg\'>',
+                '<p style=\'display: inline-block;width:49%;\'>' + this.getAreaDescription() + '</p>',
+                '<img style=\'display: inline-block;width:49%; vertical-align:top\' src=\'' + this.getImageUrl() + '\'>',
             '</div>',
         '</div>'
     ].join('');
     this.getContentString = function() {
         return this.contentString
-    };
-    this.imageUrl = imageUrl || 'http://cdn.felixandiris.com/tn_-----images--W--BroadRipple-TOR---jpg_w705.jpg';
-    this.getImageUrl = function() {
-        return this.imageUrl;
     };
     this.swiperSlide = [
         '<!-- Begin Pair-->',
