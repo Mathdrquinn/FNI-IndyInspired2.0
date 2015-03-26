@@ -1084,6 +1084,7 @@ $(document).ready(function() {
 
         // Initialize Swiper
         initSwipers();
+        $(document).foundation();
 
     } // End initialize of googleMaps
 
